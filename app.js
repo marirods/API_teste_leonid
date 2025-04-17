@@ -1,45 +1,89 @@
 'use strict'
 
 //pegar dados pelos nomes sem ser id
-
-
-async function getMeusContatos (){
-     const url=`https://giovanna-whatsapp.onrender.com/v1/whatsapp/contatos/11987876567`
-    const response = await fetch (url)
+async function getContatos (){
+    const url = 'https://bakcend-fecaf-render.onrender.com/contatos'
+    const response = await fetch(url)
     const data = await response.json()
     console.log(data)
     return data
 }
 
-// criar contato
-async function postContatos(contato){
 
-        const meusContatos=document.getElementById('contatos')
-        const CardNovo=document.createElement('div')
-        CardNovo.classList.add('contato')
-    
-        const Perfil=document.createElement('img')
-        Perfil.src=link.profile
-        NovoCard.appendChild(NovoPerfil)
-    
-        const NovaInfo=document.createElement('div')
-        NovaInfo.classList.add('info')
-        NovoCard.appendChild(NovaInfo)
-    
-        const NovoNome=document.createElement('p')
-        NovoNome.classList.add('name')
-        NovoNome.textContent=`${link.name}`
-        NovaInfo.appendChild(NovoNome)
-    
-        const NovoNumero=document.createElement('p')
-        NovoNumero.textContent=`${link.description}`
-        NovaInfo.appendChild(NovoNumero)
-        
-        NovoCard.appendChild(NovaInfo)
-        contatos.appendChild(NovoCard)
-    
-        NovoCard.addEventListener('click', async function(){
-            
-            await preencherConversa(link.name)
-        })
-    }
+//pegar pelo id ou numero de telefone
+async function getContato (id){
+const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
+    const response = await fetch(url)
+    const data = await response.json()
+    console.log(data)
+    return data
+}
+
+
+//criar contato
+async function postContato(contato){
+    // console.log(contato)
+      const url = 'https://bakcend-fecaf-render.onrender.com/contatos'
+      const options = {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contato)
+      }
+      const response = await fetch(url, options)
+
+      //ok é verdadeiro se deu certo e falso deu errado
+      return response.ok
+}
+
+
+//criar novo contato
+// const novoContato = {
+//     "nome": "Mari Rodrigues",
+//     "celular": "11 1 1111-1111",
+//     "foto": "senai.png",
+//     "email": "marirodrigues@gmail.com",
+//     "endereco": "Elton Silva, 904",
+//     "cidade": "Jandira"
+// }
+
+const novoContato = {
+    "nome": "Mari",
+    "celular": "22 2 2222-2222",
+    "foto": "mari.png",
+    "email": "mari@gmail.com",
+    "endereco": "Elton Silva, 904",
+    "cidade": "Jandira"
+}
+
+//editar contato cadastrado - update
+async function putContato(id, contato){
+    // console.log(contato)
+      const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
+      const options = {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(contato)
+      }
+      const response = await fetch(url, options)
+
+      //ok é verdadeiro se deu certo e falso deu errado
+      return response.ok
+}
+
+
+//deletar algum elemento
+async function deleteContato(id){
+    // console.log(contato)
+      const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
+      const options = {
+        method: 'DELETE',
+      }
+      const response = await fetch(url, options)
+
+      //ok é verdadeiro se deu certo e falso deu errado
+      return response.ok
+}
