@@ -29,7 +29,7 @@ const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
 
 
 //criar contato
-async function postContato(contato){
+export async function postContato(contato){
     // console.log(contato)
       const url = 'https://bakcend-fecaf-render.onrender.com/contatos'
       const options = {
