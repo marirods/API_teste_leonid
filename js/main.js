@@ -69,7 +69,19 @@ async function salvarContato (){
     // console.log(contato)
 }
 
+
+
+
 exibirContatos()
+
+// const uploadParams = {
+//     file: document.getElementById('foto').files[0],
+//     storageAccount: 'uploadmariane',
+//     sasToken: 'sp=racwl&st=2025-05-15T12:39:50Z&se=2025-05-15T20:39:50Z&sv=2024-11-04&sr=c&sig=XLNTf25f3hwrWlJ%2Br%2BNC3C1ATc3C6ddZldpP428pORE%3D',
+//     containerName: 'fotos',
+// };
+
+// await uploadImageToAzure(uploadParams)
 
 
 document.getElementById('pesquisar')
