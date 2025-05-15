@@ -2,6 +2,8 @@
 
 import { getContatos, getContatosPorNome, postContato } from "./contato.js"
 
+import { uploadImageToAzure } from "./uploadImageToAzure.js"
+
 function criarCard (contato){
     // console.log(contato)
     const container = document.getElementById('container')
@@ -50,10 +52,20 @@ function voltarHome (){
 }
 
 async function salvarContato (){
+
+    const uploadParams = {
+        file: document.getElementById('foto').files[0],
+        storageAccount: 'uploadmariane',
+        sasToken: 'sp=racwl&st=2025-05-15T12:39:50Z&se=2025-05-15T20:39:50Z&sv=2024-11-04&sr=c&sig=XLNTf25f3hwrWlJ%2Br%2BNC3C1ATc3C6ddZldpP428pORE%3D',
+        containerName: 'fotos',
+    };
+    
+    
+
     const contato = {
         "nome": document.getElementById('nome').value,
         "celular":document.getElementById('celular').value,
-        "foto": document.getElementById('foto').value,
+        "foto": await uploadImageToAzure(uploadParams),
         "email": document.getElementById('email').value,
         "endereco": document.getElementById('endereco').value,
         "cidade": document.getElementById('cidade').value,
@@ -66,7 +78,6 @@ async function salvarContato (){
        
     }
 
-    // console.log(contato)
 }
 
 
@@ -74,14 +85,6 @@ async function salvarContato (){
 
 exibirContatos()
 
-// const uploadParams = {
-//     file: document.getElementById('foto').files[0],
-//     storageAccount: 'uploadmariane',
-//     sasToken: 'sp=racwl&st=2025-05-15T12:39:50Z&se=2025-05-15T20:39:50Z&sv=2024-11-04&sr=c&sig=XLNTf25f3hwrWlJ%2Br%2BNC3C1ATc3C6ddZldpP428pORE%3D',
-//     containerName: 'fotos',
-// };
-
-// await uploadImageToAzure(uploadParams)
 
 
 document.getElementById('pesquisar')

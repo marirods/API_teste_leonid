@@ -23,7 +23,7 @@ async function getContato (id){
 const url = `https://bakcend-fecaf-render.onrender.com/contatos/${id}`
     const response = await fetch(url)
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
     return data
 }
 
